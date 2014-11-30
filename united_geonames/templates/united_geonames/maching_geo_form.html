@@ -1,0 +1,42 @@
+{% extends 'united_geonames/hpn_index.html' %}
+{% load i18n cms_tags sekizai_tags cache menu_tags staticfiles  %}
+{% block content%}
+<style>
+#map {
+        height: 30%;
+        margin: 0px;
+        padding: 0px
+      }
+
+#searchHpn {
+    float: right;
+    margin-top: 20px;
+}
+</style>
+
+    {% include 'autocomplete_light/static.html' %}
+    {% include 'tags/locations_map.html' %}
+    <a href="{% page_url 'search_hpn' %}" id="searchHpn" type="button" class="btn btn-success">{% trans 'New search' %}</a>
+    <form id="geoNameForm" method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="section">
+{#            {{ matched_log.as_table }} TODO: ar reikalingas šis įrašas? #}
+        </div>
+        <h2>{%  trans "Matched Places" %}</h2>
+        {% include "united_geonames/tabular_form.html" %}
+        <p><a id="add" href="#">Add place to match with</a></p>
+        <input type="submit" class="btn btn-default" value="Submit">
+    </form>
+    <script type="text/javascript">
+        $('input:checkbox').prop('checked', false);
+        $(".eile").last().hide();
+        $("#add").click(function(){
+                $(".eile").last().show();
+                $("#add").last().hide();
+        });
+        $(document).on('click','input:checkbox', function() {
+            $('input:checkbox').prop('checked', false);
+            $(this).prop('checked', true);
+        });
+    </script>
+{% endblock %}

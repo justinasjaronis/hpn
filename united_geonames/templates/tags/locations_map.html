@@ -1,0 +1,64 @@
+{% load i18n %}
+{% load sekizai_tags %}
+{% addtoblock "js" %}
+
+<script type="text/javascript" >
+    window.service_markers = {};
+    var masyvas = [];
+    var pavadinimai = [];
+    var aprasymai = [];
+    var ids = [];
+    {% for i in mas %}
+       masyvas.push(new google.maps.LatLng({{ i.x }}, {{ i.y }}));
+       pavadinimai.push('{{ i.name }}');
+       aprasymai.push('{{ i.description|striptags }}');
+       ids.push({{ i.id }});
+    {% endfor %}
+
+    function initialize() {
+      var mapOptions = {
+        zoom: 10,
+        center: new google.maps.LatLng({{ center_x }}, {{ center_y }}),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      var map = new google.maps.Map(document.getElementById("{{ map_name }}"), mapOptions);
+      setMarkers(map,masyvas);
+    }
+    function setMarkers(map,masyvas){
+        var marker, i;
+        var markers = [];
+        var infoWindow = new google.maps.InfoWindow();
+        for (i = 0; i < masyvas.length; i++)
+        {
+
+         var lat = masyvas[i];
+         var content = pavadinimai[i];
+
+         window.service_markers['service'+ids[i]] = new google.maps.Marker({
+                map: map, title: content , position: lat
+              })
+         var marker = window.service_markers['service'+ids[i]]
+         map.setCenter(marker.getPosition());
+         google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infoWindow.setContent(pavadinimai[i]);
+                    infoWindow.open(map, marker);
+                    $('.service_content').slideUp(600);
+                    $('#service' + ids[i]).slideDown(600);
+                    $(document).scrollTo($('#services_content'), 500, {axis: 'y'});
+                }
+         })(marker, i));
+    }
+    window.service_map = map;
+    window.service_map_infowindow = infoWindow;
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+
+{% endaddtoblock %}
+{% render_block "js" %}
+
+<div id="map"  class="map-tag">
+</div>
+

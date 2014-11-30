@@ -1,0 +1,34 @@
+{% extends 'united_geonames/hpn_index.html' %}
+{% load i18n cms_tags sekizai_tags cache menu_tags staticfiles hpn_tags %}
+
+{% block menu %}
+<!-- Static navbar -->
+<div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{% page_url 'hpn_menu' %}">HPN</a></li>
+                <li><a href="{% page_url 'search_hpn' %}">{% page_attribute "page_title" "search_hpn" %}</a></li>
+                <li><a href="{% page_url 'database' %}">{% page_attribute "page_title" "database" %}</a></li>
+                <li><a href="{% page_url 'analyse-data' %}">{% page_attribute "page_title" "analyse-data" %}</a></li>
+                <li><a href="{% page_url 'documentation' %}">{% page_attribute "page_title" "documentation" %}</a></li>
+                <li><a href="{% page_url 'registration' %}">{% page_attribute "page_title" "registration" %}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.user.is_authenticated %}
+                    <li><a href="#">{% trans 'Hello,' %} {{ request.user.username }} !</a></li>
+                    <li><a href="{% url accounts_logout %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url accounts_register %}">Register</a></li>
+                    <li><a href="{% url accounts_login %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</div>
+<script>
+$(function() {
+    $( document ).tooltip();
+});
+</script>
+{% endblock %}

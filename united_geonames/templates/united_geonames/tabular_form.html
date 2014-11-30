@@ -1,0 +1,98 @@
+{% load i18n %}
+{% load sekizai_tags %}
+<style>
+input, button, select, textarea,  .autocomplete  {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: 100px;
+}
+</style>
+ <script>
+$(function() {
+    $( document ).tooltip();
+});
+</script>
+{{ formset.management_form }}
+{{ formset.non_form_errors.as_ul }}
+<table id="formset" class="table">
+    {% for form in formset.forms %}
+        {% if forloop.first %}
+            <thead>
+                <tr>
+                    <th title="Matched contemporary geoname.">United geoname</th>
+                    <th title="Distance between matched geoname and user selected coordinates (in case of coordinates search)">Geographical distance</th>
+                    <th title="Ngram distance between HPN and contemporary place name (in case of HPN search)">Ngram distance</th>
+                    <th title="Ranked accuracy by using special algorithm (e.g. if name and
+                        coordinates are exact, it will be ranked as 100%; if name is exact, but
+                        coordinates deviate by 100%, it will be ranked as 55%; if name is exact,
+                        but coordinates deviate by 50%, it will be ranked as 75%; if name is not
+                        exact and coordinates do not match allowed deviation, it will be ranked as
+                        0%).">Percentage</th>
+                    <th title="Remarks (only if they are added to HPN in LoCloud HPN
+Thesaurus)">Remark</th>
+                    <th title="User possibility (function) to mark and submit (by clicking
+“Submit” button) information about the best matching result between
+searched HPN and LoCloud HPN Thesaurus record.">Best match</th>
+                <th title="All matched Synonyms">
+                    Synonim
+                </th>
+            </tr>
+            </thead>
+        {% endif %}
+        <tr class="eile {% cycle row1,row2 %}">
+        {% for field in form.visible_fields %}
+        <td>
+            {# Include the hidden fields in the form #}
+            {% if forloop.first %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+            {% endif %}
+            {{ field.errors.as_ul }}
+            {{ field }}
+        </td>
+    {% endfor %}
+    <td>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{% trans "Synonim name" %}</th>
+                    <th>{% trans "Coordinates" %}</th>
+                    <th>{% trans "Region" %}</th>
+                    <th>{% trans "Subregion" %}</th>
+                    <th>{% trans "Country" %}</th>
+                    <th>{% trans "Date Information" %}</th>
+                    <th>{% trans "Original Source" %}</th>
+                    <th>{% trans "Synonim ID" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ form.synonim.management_form }}
+                {% for i in form.synonim.forms %}
+                    {% if i.instance.get_alter_language == 'und' or i.instance.get_alter_language == searched_language %}
+                    <tr>
+                        <td>{{ i.instance.name }}</td>
+                        <td>{{ i.instance.coordinates }}</td>
+                        <td>{{ i.instance.united_geoname.region }}</td>
+                        <td>{{ i.instance.united_geoname.subregion }}</td>
+                        <td>{{ i.instance.united_geoname.country }}</td>
+                        <td>
+                            {% for date in  i.instance.temporal.all %}
+                                {{ date }}
+                            {% endfor %}
+                        </td>
+                        <td>{{ i.instance.get_project_name }}</td>
+                        <td>{{ i.instance.id }}</td>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+
+
+
