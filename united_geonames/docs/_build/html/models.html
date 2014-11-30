@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modeliai &mdash; Historical Place Names 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Historical Place Names 1.0 documentation" href="index.html" />
+    <link rel="next" title="Admin" href="admin.html" />
+    <link rel="prev" title="Welcome to Historical Place Names documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="admin.html" title="Admin"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Historical Place Names documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Historical Place Names 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-united_geonames.models">
+<span id="modeliai"></span><h1><tt class="docutils literal"><span class="pre">Modeliai</span></tt><a class="headerlink" href="#module-united_geonames.models" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="united_geonames.models.Database">
+<em class="property">class </em><tt class="descclassname">united_geonames.models.</tt><tt class="descname">Database</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#united_geonames.models.Database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Database(id, file, email, information)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> (<em>AutoField</em>) &#8211; Id</li>
+<li><strong>file</strong> (<em>FileField</em>) &#8211; Database file</li>
+<li><strong>email</strong> (<em>CharField</em>) &#8211; Email</li>
+<li><strong>information</strong> (<em>TextField</em>) &#8211; Information</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="united_geonames.models.UserGeoName">
+<em class="property">class </em><tt class="descclassname">united_geonames.models.</tt><tt class="descname">UserGeoName</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#united_geonames.models.UserGeoName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Lentelė, kurią pildys išoriniai vartotojai iš Front-Endo.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> (<em>AutoField</em>) &#8211; Id</li>
+<li><strong>name</strong> (<em>CharField</em>) &#8211; Name</li>
+<li><strong>region</strong> (<em>CharField</em>) &#8211; Region</li>
+<li><strong>subregion</strong> (<em>CharField</em>) &#8211; Subregion</li>
+<li><strong>country</strong> (<em>CharField</em>) &#8211; Country</li>
+<li><strong>coordinates</strong> (<em>PointField</em>) &#8211; Coordinates</li>
+<li><strong>user_id</strong> (<em>ForeignKey</em>) &#8211; User</li>
+<li><strong>language</strong> (<em>CharField</em>) &#8211; Language</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="united_geonames.models.UserProject">
+<em class="property">class </em><tt class="descclassname">united_geonames.models.</tt><tt class="descname">UserProject</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#united_geonames.models.UserProject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Kiekvienam projektui (Pleiades, Cities, Norway database ir pan - yra priskyriami žmonės kuravimui)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> (<em>AutoField</em>) &#8211; Id</li>
+<li><strong>name</strong> (<em>CharField</em>) &#8211; Name</li>
+<li><strong>project_id</strong> (<em>ForeignKey</em>) &#8211; Project</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="united_geonames.models.UnitedGeoName">
+<em class="property">class </em><tt class="descclassname">united_geonames.models.</tt><tt class="descname">UnitedGeoName</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#united_geonames.models.UnitedGeoName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>UnitedGeoName(id, main_name, region, subregion, country, centroid)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> (<em>AutoField</em>) &#8211; Id</li>
+<li><strong>main_name</strong> (<em>CharField</em>) &#8211; Main name</li>
+<li><strong>region</strong> (<em>CharField</em>) &#8211; Region</li>
+<li><strong>subregion</strong> (<em>CharField</em>) &#8211; Subregion</li>
+<li><strong>country</strong> (<em>CharField</em>) &#8211; Country</li>
+<li><strong>centroid</strong> (<em>PointField</em>) &#8211; Centroid</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="united_geonames.models.UnitedGeoNameSynonim">
+<em class="property">class </em><tt class="descclassname">united_geonames.models.</tt><tt class="descname">UnitedGeoNameSynonim</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#united_geonames.models.UnitedGeoNameSynonim" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>SYNONIM - aruodų vietose tai pavadinimo varijantai, cities appse - tai alter names</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> (<em>AutoField</em>) &#8211; Id</li>
+<li><strong>united_geoname_id</strong> (<em>ForeignKey</em>) &#8211; United geoname</li>
+<li><strong>name</strong> (<em>CharField</em>) &#8211; Synonim name</li>
+<li><strong>content_type_id</strong> (<em>ForeignKey</em>) &#8211; Original source</li>
+<li><strong>object_id</strong> (<em>PositiveIntegerField</em>) &#8211; Original place</li>
+<li><strong>synonim_name</strong> (<em>CharField</em>) &#8211; Synonim name</li>
+<li><strong>synonim_content_type_id</strong> (<em>ForeignKey</em>) &#8211; Original synonim source</li>
+<li><strong>synonim_object_id</strong> (<em>PositiveIntegerField</em>) &#8211; Original synonim place</li>
+<li><strong>language</strong> (<em>CharField</em>) &#8211; Language</li>
+<li><strong>identifier</strong> (<em>CharField</em>) &#8211; Additional information</li>
+<li><strong>coordinates</strong> (<em>PointField</em>) &#8211; Coordinates</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="united_geonames.models.UnitedGeoNameSynonim.run_city_alt_names">
+<em class="property">static </em><tt class="descname">run_city_alt_names</tt><big>(</big><big>)</big><a class="headerlink" href="#united_geonames.models.UnitedGeoNameSynonim.run_city_alt_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>City Alt Names migravimas i sinonimus.</p>
+<p>Paleidimas:</p>
+<p>In [1]: from united_geonames.models import UnitedGeoNameSynonim
+In [2]: UnitedGeoNameSynonim.run_city_alt_names()</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="united_geonames.models.GeoNamesMatchingLogMatch">
+<em class="property">class </em><tt class="descclassname">united_geonames.models.</tt><tt class="descname">GeoNamesMatchingLogMatch</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#united_geonames.models.GeoNamesMatchingLogMatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>GeoNamesMatchingLogMatch(id, start_date, content_type_id, object_id, number_of_alternatives, matching_index)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> (<em>AutoField</em>) &#8211; Id</li>
+<li><strong>start_date</strong> (<em>DateTimeField</em>) &#8211; Start date</li>
+<li><strong>content_type_id</strong> (<em>ForeignKey</em>) &#8211; Content type</li>
+<li><strong>object_id</strong> (<em>PositiveIntegerField</em>) &#8211; Object id</li>
+<li><strong>number_of_alternatives</strong> (<em>IntegerField</em>) &#8211; Number of alternatives</li>
+<li><strong>matching_index</strong> (<em>FloatField</em>) &#8211; Matching index</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="united_geonames.models.GeoNamesMatchingLogMatchedPlaces">
+<em class="property">class </em><tt class="descclassname">united_geonames.models.</tt><tt class="descname">GeoNamesMatchingLogMatchedPlaces</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#united_geonames.models.GeoNamesMatchingLogMatchedPlaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">django.db.models.base.Model</span></tt></p>
+<p>Informacija apie kiekvieną atitinkanti (Matched) objektą</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> (<em>AutoField</em>) &#8211; Id</li>
+<li><strong>matchinglogmatch_id</strong> (<em>ForeignKey</em>) &#8211; Matchinglogmatch</li>
+<li><strong>united_geoname_id</strong> (<em>ForeignKey</em>) &#8211; United geoname</li>
+<li><strong>geographical_distance</strong> (<em>FloatField</em>) &#8211; Geographical distance</li>
+<li><strong>ngram_distance</strong> (<em>FloatField</em>) &#8211; Ngram distance</li>
+<li><strong>percentage</strong> (<em>FloatField</em>) &#8211; Percentage</li>
+<li><strong>remark</strong> (<em>TextField</em>) &#8211; Remark</li>
+<li><strong>best_match</strong> (<em>BooleanField</em>) &#8211; Best match</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="united_geonames.models.GeoNamesMatchingLogMatchedPlaces.get_synonyms">
+<tt class="descname">get_synonyms</tt><big>(</big><big>)</big><a class="headerlink" href="#united_geonames.models.GeoNamesMatchingLogMatchedPlaces.get_synonyms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Grazina visus MatchedPlace sinonimus.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="united_geonames.models.update_centroid">
+<tt class="descclassname">united_geonames.models.</tt><tt class="descname">update_centroid</tt><big>(</big><em>sender</em>, <em>instance</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#united_geonames.models.update_centroid" title="Permalink to this definition">¶</a></dt>
+<dd><p>On saving each UnitedGeoNameSynonym object this method gets all
+UnitedGeoNameSynonym objects in current UnitedGeoName and calculate
+centroid of each UnitedGeoNameSynonyms. Then writes centroid to table
+UnitedGeoName (column &#8220;centroid&#8221;).</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Historical Place Names documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="admin.html"
+                        title="next chapter"><tt class="docutils literal"><span class="pre">Admin</span></tt></a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/models.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="admin.html" title="Admin"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Historical Place Names documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">Historical Place Names 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Atviro Kodo Sprendimai.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
